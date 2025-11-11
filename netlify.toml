@@ -1,20 +1,15 @@
+# Netlify configuration for Next.js
+# Netlify automatically detects Next.js and uses the Essential Next.js Build Plugin
+# Documentation: https://docs.netlify.com/integrations/frameworks/next-js/
+
 [build]
   command = "npm run build"
-  publish = ".next"
+  # Do not set 'publish' - Netlify handles this automatically for Next.js
 
 [build.environment]
   NODE_VERSION = "20"
 
-# Next.js specific configuration
-# Netlify automatically detects Next.js and applies optimizations
-
-# Optional: Redirects for SPA-style routing
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-# Optional: Headers for security
+# Headers for security
 [[headers]]
   for = "/*"
   [headers.values]
