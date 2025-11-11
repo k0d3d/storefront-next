@@ -1,9 +1,12 @@
 /**
  * WooCommerce API client for Next.js
  * Calls the wc-api Node.js service
+ *
+ * Note: WC_API_URL is server-side only (no NEXT_PUBLIC_ prefix)
+ * All data fetching happens in Server Components, keeping API URL secure
  */
 
-const WC_API_URL = process.env.NEXT_PUBLIC_WC_API_URL || process.env.WC_API_URL || "http://localhost:5000";
+const WC_API_URL = process.env.WC_API_URL || "http://localhost:5000";
 
 export interface Product {
 	id: number;

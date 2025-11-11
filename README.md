@@ -79,7 +79,12 @@ pnpm start
 
 ## Environment Variables
 
+### Server-Side Only (Secure)
+
 - `WC_API_URL` - WooCommerce API URL (default: https://wc-api.tohju.com)
+  - **Server-side only** - not exposed to client browser
+  - All data fetching happens in Server Components
+  - Never use `NEXT_PUBLIC_` prefix for API URLs
 
 ## Telegram Checkout
 
