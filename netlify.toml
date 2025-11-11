@@ -1,14 +1,14 @@
 # Netlify configuration for Next.js
-# Documentation: https://docs.netlify.com/integrations/frameworks/next-js/
+# IMPORTANT: In Netlify Dashboard, go to Site settings → Build & deploy → Build settings
+# and CLEAR/DELETE the "Publish directory" field - leave it empty!
+# The Essential Next.js plugin handles this automatically.
 
 [build]
   command = "npx pnpm install --store=node_modules/.pnpm-store && npx pnpm run build"
+  # Do NOT set publish - let Next.js plugin handle it
 
 [build.environment]
   NODE_VERSION = "20"
-
-# Essential Next.js Plugin is automatically installed by Netlify
-# No need to specify it in [[plugins]]
 
 # Headers for security
 [[headers]]

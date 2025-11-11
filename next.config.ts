@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Let Netlify Essential Next.js plugin handle the deployment
 };
 
 export default nextConfig;
