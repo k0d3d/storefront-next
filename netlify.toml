@@ -1,13 +1,14 @@
 # Netlify configuration for Next.js
-# Netlify automatically detects Next.js and uses the Essential Next.js Build Plugin
 # Documentation: https://docs.netlify.com/integrations/frameworks/next-js/
 
 [build]
-  command = "npm run build"
-  # Do not set 'publish' - Netlify handles this automatically for Next.js
+  command = "npx pnpm install --store=node_modules/.pnpm-store && npx pnpm run build"
 
 [build.environment]
   NODE_VERSION = "20"
+
+# Essential Next.js Plugin is automatically installed by Netlify
+# No need to specify it in [[plugins]]
 
 # Headers for security
 [[headers]]
