@@ -9,6 +9,8 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  # Skip Netlify's automatic npm install (we use pnpm in build command)
+  NPM_FLAGS = "--version"
 
 # Headers for security
 [[headers]]
