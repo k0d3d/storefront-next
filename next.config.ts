@@ -9,13 +9,10 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'wc-api.tohju.com',
-        pathname: '/public/stores/**',
       },
       {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '5000',
-        pathname: '/public/stores/**',
+        protocol: 'https',
+        hostname: 'ryzen-dev.tohju.com',
       },
     ],
   },
