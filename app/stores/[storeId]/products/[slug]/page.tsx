@@ -14,6 +14,21 @@ interface PageProps {
 	}>;
 }
 
+/**
+ * Strip HTML tags from a string
+ */
+function stripHtml(html: string): string {
+	return html
+		.replace(/<[^>]*>/g, '') // Remove HTML tags
+		.replace(/&nbsp;/g, ' ') // Replace &nbsp; with space
+		.replace(/&amp;/g, '&') // Replace &amp; with &
+		.replace(/&lt;/g, '<') // Replace &lt; with <
+		.replace(/&gt;/g, '>') // Replace &gt; with >
+		.replace(/&quot;/g, '"') // Replace &quot; with "
+		.replace(/&#39;/g, "'") // Replace &#39; with '
+		.trim();
+}
+
 // Generate metadata for SEO
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
 	const { storeId, slug } = await params;
@@ -27,16 +42,74 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 			};
 		}
 
+		// Clean description from HTML
+		const description = product.short_description
+			? stripHtml(product.short_description).substring(0, 160)
+			: product.description
+				? stripHtml(product.description).substring(0, 160)
+				: `Buy ${product.name} with crypto on Telegram via MerchPaddie`;
+
+		// Get primary image
+		const primaryImage = product.images?.[0];
+		const imageUrl = primaryImage?.src || '';
+		const imageAlt = primaryImage?.alt || product.name;
+
+		// Build product URL
+		const productUrl = `https://merchpaddie.store/stores/${storeId}/products/${slug}`;
+
+		// Format price for display
+		const priceValue = parseFloat(product.price || product.regular_price || '0');
+		const priceText = priceValue > 0 ? `$${priceValue.toFixed(2)}` : '';
+
 		return {
-			title: `${product.name} - MerchPaddie`,
-			description: product.short_description || product.description?.substring(0, 160),
+			title: `${product.name} ${priceText ? `- ${priceText}` : ''} | MerchPaddie`,
+			description,
+
+			// Canonical URL
+			alternates: {
+				canonical: productUrl,
+			},
+
+			// Open Graph for Facebook, LinkedIn, etc.
 			openGraph: {
+				type: 'website',
+				url: productUrl,
 				title: product.name,
-				description: product.short_description || '',
+				description,
+				siteName: 'MerchPaddie',
 				images: product.images.map(img => ({
 					url: img.src,
 					alt: img.alt || product.name,
+					width: 800,
+					height: 800,
 				})),
+			},
+
+			// Twitter Card
+			twitter: {
+				card: 'summary_large_image',
+				title: product.name,
+				description,
+				images: imageUrl ? [imageUrl] : [],
+			},
+
+			// Additional meta tags
+			keywords: [
+				product.name,
+				'crypto payment',
+				'buy with crypto',
+				'Telegram shopping',
+				'SOL',
+				'USDC',
+				'TON',
+				...(product.tags?.map(tag => tag.name) || []),
+				...(product.categories?.map(cat => cat.name) || []),
+			],
+
+			// Robots
+			robots: {
+				index: product.stock_status === 'instock',
+				follow: true,
 			},
 		};
 	} catch {
@@ -58,8 +131,51 @@ export default async function ProductDetailPage({ params }: PageProps) {
 	const telegramLink = `https://t.me/merchpaddie_bot?start=checkout_${storeId}_${product.id}`;
 	const checkoutCommand = `/checkout ${storeId}:${product.id}`;
 
+	// JSON-LD Structured Data for Google Rich Results
+	const productUrl = `https://merchpaddie.store/stores/${storeId}/products/${slug}`;
+	const priceValue = parseFloat(product.price || product.regular_price || '0');
+	const primaryImage = product.images?.[0]?.src;
+
+	const structuredData = {
+		'@context': 'https://schema.org',
+		'@type': 'Product',
+		name: product.name,
+		description: product.short_description
+			? stripHtml(product.short_description)
+			: product.description
+				? stripHtml(product.description)
+				: `Buy ${product.name} with crypto`,
+		image: product.images?.map(img => img.src) || [],
+		sku: product.sku || `product-${product.id}`,
+		offers: {
+			'@type': 'Offer',
+			url: productUrl,
+			priceCurrency: 'USD',
+			price: priceValue.toFixed(2),
+			availability:
+				product.stock_status === 'instock'
+					? 'https://schema.org/InStock'
+					: product.stock_status === 'outofstock'
+						? 'https://schema.org/OutOfStock'
+						: 'https://schema.org/PreOrder',
+			seller: {
+				'@type': 'Organization',
+				name: 'MerchPaddie',
+			},
+		},
+		brand: {
+			'@type': 'Brand',
+			name: 'MerchPaddie',
+		},
+	};
+
 	return (
 		<div className="min-h-screen bg-background">
+			{/* JSON-LD Structured Data */}
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+			/>
 			<div className="container mx-auto px-4 py-8">
 				<div className="mb-8">
 					<BackButton href={`/stores/${storeId}`} label="Back to Store" />
