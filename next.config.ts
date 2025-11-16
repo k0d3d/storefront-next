@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
 
   // Image configuration for WooCommerce product images
   images: {
+    // Disable Next.js image optimization for Netlify deployment
+    // Images are already optimized by WooCommerce and served via wc-api proxy
+    unoptimized: true,
+
+    // Keep remotePatterns for development and type safety
     remotePatterns: [
       {
         protocol: 'https',
