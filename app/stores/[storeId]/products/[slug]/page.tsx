@@ -49,9 +49,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 				? stripHtml(product.description).substring(0, 160)
 				: `Buy ${product.name} with crypto on Telegram via MerchPaddie`;
 
-		// Get primary image
+		// Get primary image - use thumbnail
 		const primaryImage = product.images?.[0];
-		const imageUrl = primaryImage?.src || '';
+		const imageUrl = primaryImage?.thumbnail || '';
 		const imageAlt = primaryImage?.alt || product.name;
 
 		// Build product URL
@@ -78,7 +78,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 				description,
 				siteName: 'MerchPaddie',
 				images: product.images.map(img => ({
-					url: img.src,
+					url: img.thumbnail,
 					alt: img.alt || product.name,
 					width: 800,
 					height: 800,
@@ -134,7 +134,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
 	// JSON-LD Structured Data for Google Rich Results
 	const productUrl = `https://merchpaddie.store/stores/${storeId}/products/${slug}`;
 	const priceValue = parseFloat(product.price || product.regular_price || '0');
-	const primaryImage = product.images?.[0]?.src;
+	const primaryImage = product.images?.[0]?.thumbnail;
 
 	const structuredData = {
 		'@context': 'https://schema.org',
@@ -145,7 +145,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
 			: product.description
 				? stripHtml(product.description)
 				: `Buy ${product.name} with crypto`,
-		image: product.images?.map(img => img.src) || [],
+		image: product.images?.map(img => img.thumbnail) || [],
 		sku: product.sku || `product-${product.id}`,
 		offers: {
 			'@type': 'Offer',
@@ -185,7 +185,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
 					<div className="mb-8 flex justify-center">
 						<div className="relative w-full max-w-2xl aspect-square rounded-lg overflow-hidden shadow-lg">
 							<Image
-								src={product.images[0].src}
+								src={product.images[0].thumbnail}
 								alt={product.images[0].alt || product.name}
 								fill
 								className="object-cover"

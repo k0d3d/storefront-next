@@ -18,7 +18,7 @@ export default function ProductCard({ product, storeId }: ProductCardProps) {
 			{product.images && product.images.length > 0 && (
 				<div className="aspect-square overflow-hidden relative">
 					<Image
-						src={product.images[0].src}
+						src={product.images[0].thumbnail}
 						alt={product.images[0].alt || product.name}
 						fill
 						className="object-cover"

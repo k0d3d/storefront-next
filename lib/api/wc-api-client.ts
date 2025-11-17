@@ -32,6 +32,9 @@ export interface ProductImage {
 	src: string;
 	name: string;
 	alt: string;
+	thumbnail?: string;
+	srcset?: string;
+	sizes?: string;
 }
 
 export interface ProductCategory {
@@ -78,7 +81,8 @@ export async function getProductBySlug(
 		}
 
 		const product = await response.json();
-		console.log("[wc-api-client] Product fetched successfully:", product.id);
+		// console.log("[wc-api-client] Product fetched successfully:", product.id);
+		console.log(product)
 		return product;
 	} catch (error) {
 		console.error("[wc-api-client] Error fetching product by slug:", error);
