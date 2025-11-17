@@ -15,10 +15,10 @@ export default function ProductCard({ product, storeId }: ProductCardProps) {
 			href={`/stores/${storeId}/products/${product.slug}`}
 			className="block bg-white rounded-lg shadow hover:shadow-lg transition-shadow border border-gray-200 overflow-hidden"
 		>
-			{product.images && product.images.length > 0 && (
+			{product.images && product.images.length > 0 && product.images[0].src && (
 				<div className="aspect-square overflow-hidden relative">
 					<Image
-						src={product.images[0].thumbnail}
+						src={product.images[0].src}
 						alt={product.images[0].alt || product.name}
 						fill
 						className="object-cover"

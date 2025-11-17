@@ -49,9 +49,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 				? stripHtml(product.description).substring(0, 160)
 				: `Buy ${product.name} with crypto on Telegram via MerchPaddie`;
 
-		// Get primary image - use thumbnail
+		// Get primary image
 		const primaryImage = product.images?.[0];
-		const imageUrl = primaryImage?.thumbnail || '';
+		const imageUrl = primaryImage?.src || '';
 		const imageAlt = primaryImage?.alt || product.name;
 
 		// Build product URL
@@ -78,9 +78,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 				description,
 				siteName: 'MerchPaddie',
 				images: product.images
-					.filter(img => img.thumbnail)
+					.filter(img => img.src)
 					.map(img => ({
-						url: img.thumbnail!,
+						url: img.src!,
 						alt: img.alt || product.name,
 						width: 800,
 						height: 800,
@@ -136,7 +136,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
 	// JSON-LD Structured Data for Google Rich Results
 	const productUrl = `https://merchpaddie.store/stores/${storeId}/products/${slug}`;
 	const priceValue = parseFloat(product.price || product.regular_price || '0');
-	const primaryImage = product.images?.[0]?.thumbnail;
+	const primaryImage = product.images?.[0]?.src;
 
 	const structuredData = {
 		'@context': 'https://schema.org',
@@ -147,7 +147,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
 			: product.description
 				? stripHtml(product.description)
 				: `Buy ${product.name} with crypto`,
-		image: product.images?.map(img => img.thumbnail) || [],
+		image: product.images?.filter(img => img.src).map(img => img.src) || [],
 		sku: product.sku || `product-${product.id}`,
 		offers: {
 			'@type': 'Offer',
@@ -183,11 +183,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
 					<BackButton href={`/stores/${storeId}`} label="Back to Store" />
 				</div>
 				{/* Product Image */}
-				{product.images && product.images.length > 0 && (
+				{product.images && product.images.length > 0 && product.images[0].src && (
 					<div className="mb-8 flex justify-center">
 						<div className="relative w-full max-w-2xl aspect-square rounded-lg overflow-hidden shadow-lg">
 							<Image
-								src={product.images[0].thumbnail}
+								src={product.images[0].src}
 								alt={product.images[0].alt || product.name}
 								fill
 								className="object-cover"
