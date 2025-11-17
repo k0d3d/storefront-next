@@ -77,12 +77,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 				title: product.name,
 				description,
 				siteName: 'MerchPaddie',
-				images: product.images.map(img => ({
-					url: img.thumbnail,
-					alt: img.alt || product.name,
-					width: 800,
-					height: 800,
-				})),
+				images: product.images
+					.filter(img => img.thumbnail)
+					.map(img => ({
+						url: img.thumbnail!,
+						alt: img.alt || product.name,
+						width: 800,
+						height: 800,
+					})),
 			},
 
 			// Twitter Card
