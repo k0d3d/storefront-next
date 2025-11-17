@@ -9,6 +9,7 @@ Multi-store e-commerce platform built with Next.js 16, allowing customers to bro
 - 🚀 **Fast**: Server-side rendering with Next.js App Router
 - 🎨 **Beautiful**: Tailwind CSS styling
 - 📱 **Telegram Integration**: Deep links to @merchpaddie_bot
+- 🏪 **Coming Soon Pages**: Auto-shows coming soon when stores have no products
 
 ## Tech Stack
 
@@ -16,6 +17,27 @@ Multi-store e-commerce platform built with Next.js 16, allowing customers to bro
 - **Styling**: Tailwind CSS 4
 - **API**: WooCommerce REST API via wc-api proxy
 - **Deployment**: Vercel / Netlify
+
+## Architecture
+
+**Clean separation of concerns:**
+
+- **WordPress (wc-multisite)**: WooCommerce backend + REST API only
+  - Merchants use wp-admin to manage products
+  - REST API serves product data
+  - No customer-facing frontend (redirects to Next.js)
+
+- **Next.js (storefront-next)**: All customer-facing pages
+  - Home page: Platform coming soon
+  - Store pages: Product listing or store coming soon
+  - Product pages: Detail view with Telegram checkout
+  - SEO optimized with metadata and structured data
+
+**Flow:**
+1. Customer visits `merchpaddie.store`
+2. Next.js fetches product data from `wc-api.tohju.com`
+3. Customer clicks "Buy" → Redirects to Telegram bot
+4. Bot processes payment via Solana/TON
 
 ## Project Structure
 
@@ -46,8 +68,19 @@ storefront-next/
 ## Routes
 
 - `/` - Coming soon page with link to mediapaddie.store
-- `/stores/[storeId]` - Store product listing
+- `/stores/[storeId]` - Store product listing (or coming soon if no products)
 - `/stores/[storeId]/products/[slug]` - Product detail page
+
+### Coming Soon Behavior
+
+**Platform Level (`/`)**
+- Always shows coming soon page
+- Links to mediapaddie.store
+
+**Store Level (`/stores/[storeId]`)**
+- **No products**: Shows beautiful coming soon page with gradient
+- **Has products**: Shows product grid with filters
+- Automatic detection based on product count
 
 ## Getting Started
 

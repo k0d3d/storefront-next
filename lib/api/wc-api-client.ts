@@ -82,7 +82,7 @@ export async function getProductBySlug(
 
 		const product = await response.json();
 		// console.log("[wc-api-client] Product fetched successfully:", product.id);
-		console.log(product)
+		// console.log(product)
 		return product;
 	} catch (error) {
 		console.error("[wc-api-client] Error fetching product by slug:", error);
