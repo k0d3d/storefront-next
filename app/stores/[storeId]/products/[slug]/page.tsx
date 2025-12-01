@@ -193,6 +193,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
 								className="object-cover"
 								priority
 								sizes="(max-width: 768px) 100vw, 672px"
+								crossOrigin="anonymous"
 							/>
 						</div>
 					</div>
