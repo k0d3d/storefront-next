@@ -3,6 +3,13 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Aximo Theme Colors */
+  --color-light-lime: #BFF747;
+  --color-buttery-white: #FDFDE1;
+  --color-ivory: #FFFFF5;
+  --color-red-orange: #FF4612;
+  --color-gondola: #1B1B1B;
 }
 
 @theme inline {
@@ -10,6 +17,28 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Aximo Custom Colors */
+  --color-colorLightLime: #BFF747;
+  --color-colorButteryWhite: #FDFDE1;
+  --color-colorIvory: #FFFFF5;
+  --color-colorRedOrange: #FF4612;
+  --color-colorGondola: #1B1B1B;
+
+  /* MerchPaddie Colors - "Sunset Money" Palette */
+  --color-merchHotPink: #FF4E8C;
+  --color-merchOrange: #FF6B35;
+  --color-merchYellow: #FFD23F;
+  --color-merchBlack: #0F0F0F;
+  --color-merchWhite: #FFFFFF;
+
+  /* Custom Screens */
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xxl: 1400px;
+  --breakpoint-xxxl: 1600px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +51,74 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+/* Utility Classes */
+.font-syne {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 700;
+}
+
+.section-space {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+@media (min-width: 768px) {
+  .section-space {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .section-space {
+    padding-top: 130px;
+    padding-bottom: 130px;
+  }
+}
+
+.horizontal-line {
+  height: 1px;
+  width: 100%;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  border-width: 2px;
+  border-color: #000;
+  background-color: #BFF747;
+  padding: 1rem 2rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: #1B1B1B;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 0 0 #000;
+}
+
+.btn-primary:hover {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 0 #000;
+}
+
+@media (min-width: 768px) {
+  .btn-primary {
+    padding-left: 2.625rem;
+    padding-right: 2.625rem;
+  }
+}
+
+.shadow-bg {
+  border-radius: 20px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 0 0 0 #000;
+}
+
+.shadow-bg:hover {
+  box-shadow: 5px 5px 0 0 #000;
+  transform: translateY(-2px);
 }
