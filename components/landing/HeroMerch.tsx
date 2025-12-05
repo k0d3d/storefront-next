@@ -158,7 +158,7 @@ export default function HeroMerch() {
         </p>
 
         {/* Subheadline */}
-        <p className="text-lg sm:text-xl text-white/90 max-w-sm sm:max-w-2xl lg:max-w-4xl mx-auto mb-8 leading-relaxed px-2">
+        <p className="text-lg sm:text-xl text-white/90 max-w-sm sm:max-w-2xl lg:max-w-4xl mx-auto mb-4 leading-relaxed px-2">
           Turn your ideas into real drops in 60 seconds. AI designs, community votes, global shipping.{' '}
           <a
             href="https://tohju.com/x402"
@@ -169,6 +169,20 @@ export default function HeroMerch() {
             Powered by x402
           </a>
           —your merch earns trust forever.
+        </p>
+
+        {/* Link to /why page */}
+        <p className="text-sm sm:text-base text-white/70 max-w-sm sm:max-w-md mx-auto mb-8 text-center px-2">
+          Not sure where to begin?{' '}
+          <Link
+            href="/why"
+            className="text-[#FFD23F] hover:text-white underline transition-colors font-semibold inline-flex items-center gap-1"
+          >
+            Read this first
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
         </p>
 
         {/* Live Stats Row */}
