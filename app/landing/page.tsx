@@ -1,18 +1,18 @@
 import {
-  Header,
+  HeaderMinimal,
   HeroMerch,
   ProblemSection,
   SolutionSection,
   LiveProofSection,
   HowItWorksSection,
   FinalCTASection,
-  Footer
+  FooterMinimal
 } from '@/components/landing';
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen">
-      <Header logo="MerchPaddie" />
+      <HeaderMinimal logo="MerchPaddie" />
 
       <main>
         <HeroMerch />
@@ -28,9 +28,9 @@ export default function LandingPage() {
         <FinalCTASection />
       </main>
 
-      <Footer
+      <FooterMinimal
         companyName="MerchPaddie"
-        description="Launch merch that sells out. Zero risk, all profit. AI-powered merch launchpad for creators. Powered by x402 blockchain trust."
+        email="hello@merchpaddie.com"
       />
     </div>
   );
