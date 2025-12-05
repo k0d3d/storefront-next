@@ -27,7 +27,7 @@ export default function HeaderMinimal({ logo = 'MerchPaddie' }: HeaderMinimalPro
               boxShadow: '0 4px 20px rgba(255, 78, 140, 0.4)'
             }}
           >
-            Launch Your Drop Free
+            Launch Your Drop
             <svg
               className="ml-2 w-4 h-4"
               fill="none"
