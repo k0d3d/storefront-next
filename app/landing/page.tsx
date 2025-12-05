@@ -4,6 +4,8 @@ import {
   ProblemSection,
   SolutionSection,
   LiveProofSection,
+  HowItWorksSection,
+  FinalCTASection,
   Services,
   Team,
   Testimonials,
@@ -23,6 +25,10 @@ export default function LandingPage() {
         <SolutionSection />
 
         <LiveProofSection />
+
+        <HowItWorksSection />
+
+        <FinalCTASection />
 
         <Services />
 

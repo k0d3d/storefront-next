@@ -4,6 +4,8 @@ export { default as HeroMerch } from './HeroMerch';
 export { default as ProblemSection } from './ProblemSection';
 export { default as SolutionSection } from './SolutionSection';
 export { default as LiveProofSection } from './LiveProofSection';
+export { default as HowItWorksSection } from './HowItWorksSection';
+export { default as FinalCTASection } from './FinalCTASection';
 export { default as Services } from './Services';
 export { default as Team } from './Team';
 export { default as Testimonials } from './Testimonials';

@@ -192,6 +192,124 @@ import { LiveProofSection } from '@/components/landing';
 - Glass morphism with backdrop-filter: blur()
 - Responsive grid layout for leaderboard
 
+### HowItWorksSection
+"The Magic Trick" - Shows the 60-second launch flow. Makes launching merch feel like cheating.
+
+```tsx
+import { HowItWorksSection } from '@/components/landing';
+
+<HowItWorksSection />
+```
+
+**Features:**
+- **Background:** Pure white (#FFFFFF) - total contrast after black proof section, feels clean and trustworthy
+- **Headline:** Black, bold: "Launch a drop in 60 seconds. Seriously." (90px)
+- **Subhead:** Gray text: "No inventory. No waiting. No upfront cost." (28px)
+- **4-Step Flow:** Four full-width horizontal panels stacked vertically
+  - **Step 1:** Hot pink bg (#FF4E8C), "Pick your vibe or let AI design it"
+  - **Step 2:** Orange bg (#FF6B35), "Drop it. Your community votes & pre-orders"
+  - **Step 3:** Yellow bg (#FFD23F), BLACK text, "It sells out → we print & ship globally"
+  - **Step 4:** Deep black bg (#0F0F0F), white text, "You keep 100%. Money hits your wallet"
+- **Each Panel (600-700px tall):**
+  - Giant number (300px tall) with glow on left side
+  - Illustration (400-500px) floating in center
+  - Massive bold text on right side
+- **Timer Badge:** Top-right corner showing "Average launch time: 00:58" with live ticking animation
+- **Bottom Closer:**
+  - "That's it."
+  - "No samples. No minimums. No excuses."
+- **CTA Button:**
+  - Gradient (pink→orange→yellow) same as hero
+  - Huge size (px-16 py-8, text-2xl)
+  - "Launch Your Drop in 60 Seconds →"
+
+**Emotional Journey:**
+1. Simplicity → "Wait, it's THAT easy?"
+2. Disbelief → "There's got to be a catch"
+3. Realization → "Holy shit, there's no catch"
+4. Action → Clicks CTA to beat 58 seconds
+
+**Color Palette:**
+- Background: #FFFFFF (pure white)
+- Headline: #000000 (black)
+- Subhead: gray-600
+- Step 1 bg: #FF4E8C (hot pink)
+- Step 2 bg: #FF6B35 (orange)
+- Step 3 bg: #FFD23F (yellow) with BLACK text
+- Step 4 bg: #0F0F0F (deep black)
+- CTA gradient: linear-gradient(135deg, #FF4E8C 0%, #FF6B35 50%, #FFD23F 100%)
+
+**Images Used:** `/images/steps/{step1-ai-painting,step2-voting-poll,step3-conveyor-belt,step4-money-wallet}.png` (generated with Ideogram v3 Turbo)
+
+**Technical Features:**
+- Live ticking timer (56-62 seconds range) using setInterval
+- Full-width colored panels with responsive grid layout
+- Giant semi-transparent numbers with glow effect
+- Drop shadow effects on illustrations
+- Responsive text sizing across breakpoints
+
+### FinalCTASection
+"The Money Shot" - Pure, instant action. No thinking allowed. The ultimate conversion screen.
+
+```tsx
+import { FinalCTASection } from '@/components/landing';
+
+<FinalCTASection />
+```
+
+**Features:**
+- **Background:** Full-bleed gradient from #FF4E8C (hot pink) at top to #FF6B35 (fiery orange) at bottom
+- **$ Coins Animation:** 30 tiny upward-moving yellow coins with glow (8% opacity)
+- **Headline:** White with electric pink glow, 110px, slightly tilted upward (-1deg rotation)
+  - "Stop waiting."
+  - "Start printing money."
+- **Subhead:** White, 36px
+  - "Your first drop goes live in 60 seconds."
+  - "Zero cost. Real profit."
+- **Primary CTA Button:** Biggest button on entire site
+  - "Launch Your Drop Free →"
+  - Gradient: #FFD23F → #FF6B35 (yellow to orange)
+  - 120px tall, pill shape, pulsing glow
+  - Text: 36px bold black
+  - Hover: scale 1.10
+- **Secondary CTA Button:**
+  - "Or See Live Drops First →"
+  - Transparent with 3px white border
+  - White text, hover: solid white bg with orange text
+- **Live Countdown Timer:** Yellow numbers with glow, counting down from 10 to 0
+  - "Average time from clicking to live drop:"
+  - "00:58" (monospace font)
+- **Final Flex Line:** Bottom center
+  - "12,847 drops launched this week."
+  - "Be 12,848."
+  - Drops count auto-increments every 5 seconds
+
+**Design Philosophy:**
+No footer. No nav. No distractions. This screen exists for ONE reason: to make people click before they finish reading.
+
+**Emotional Journey:**
+1. Urgency → "I need to act NOW"
+2. FOMO → "Everyone else is doing this"
+3. Action → Clicks primary CTA immediately
+4. No second-guessing → Decision made
+
+**Color Palette:**
+- Background gradient: linear-gradient(180deg, #FF4E8C 0%, #FF6B35 100%)
+- Headline: white with rgba(255, 78, 140, 0.8) glow
+- $ coins: #FFD23F with 8% opacity
+- Primary CTA: linear-gradient(135deg, #FFD23F 0%, #FF6B35 100%)
+- Primary CTA text: black
+- Secondary CTA: transparent with white border
+- Timer: #FFD23F (yellow) with glow
+
+**Technical Features:**
+- Countdown timer from 10 to 0, then resets (1 second intervals)
+- Auto-incrementing drops count every 5 seconds
+- Pulsing glow animation on primary CTA (@keyframes pulse-glow)
+- Upward-moving $ coins (@keyframes rise-money)
+- Hover scale on primary button (1.0 → 1.10)
+- Monospace font for timer digits
+
 ### Services
 Service/feature cards with hover effects.
 
