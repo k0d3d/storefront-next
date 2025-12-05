@@ -64,7 +64,7 @@ export default function ProblemSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0F0F0F] py-20"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0F0F0F] py-20 px-4 sm:px-6 lg:px-8"
     >
       {/* Red haze overlay - "blood in the water" */}
       <div
@@ -75,10 +75,10 @@ export default function ProblemSection() {
       />
 
       {/* Content Container */}
-      <div className="container mx-auto px-4 relative z-10 text-center">
+      <div className="container mx-auto relative z-10 text-center max-w-7xl">
         {/* Headline - Distressed hot pink */}
         <h2
-          className="text-6xl sm:text-7xl md:text-8xl lg:text-[100px] font-bold font-syne text-[#FF4E8C] mb-8 leading-tight"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-syne text-[#FF4E8C] mb-6 sm:mb-8 leading-tight max-w-5xl mx-auto px-2"
           style={{
             textShadow: '0 0 20px rgba(255, 78, 140, 0.4), 3px 3px 0 rgba(220, 38, 38, 0.3), -2px -2px 0 rgba(0, 0, 0, 0.5)',
             letterSpacing: '0.02em'
@@ -89,16 +89,16 @@ export default function ProblemSection() {
         </h2>
 
         {/* Subhead - Creates tension */}
-        <p className="text-2xl sm:text-3xl md:text-4xl text-white mb-16">
+        <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white mb-12 sm:mb-16 px-2">
           And nobody talks about why.
         </p>
 
         {/* Problem Cards - 3 Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto mb-16">
+        <div className="grid grid-cols-1 gap-8 max-w-md mx-auto md:max-w-6xl md:grid-cols-3 md:gap-6 lg:gap-8 mb-12 sm:mb-16">
           {problemCards.map((card, index) => (
             <div
               key={index}
-              className={`problem-card relative bg-[#1A1A1A] rounded-2xl px-6 py-8 transition-all duration-700 ${
+              className={`problem-card relative bg-[#1A1A1A] rounded-2xl px-6 py-8 w-full transition-all duration-700 ${
                 isVisible ? 'opacity-100 translate-y-0 translate-x-0' : 'opacity-0 translate-y-20'
               } hover:scale-105`}
               style={{
@@ -116,7 +116,7 @@ export default function ProblemSection() {
               }}
             >
               {/* Illustration */}
-              <div className="relative w-32 h-32 mx-auto mb-4">
+              <div className="relative w-28 h-28 sm:w-32 sm:h-32 mx-auto mb-4">
                 <Image
                   src={card.imageSrc}
                   alt={card.imageAlt}
@@ -126,17 +126,17 @@ export default function ProblemSection() {
               </div>
 
               {/* Big Number */}
-              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-white font-syne mb-2">
+              <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white font-syne mb-2">
                 {card.number}
               </div>
 
               {/* Detail text (upfront, cut, etc) */}
               {card.detail && (
-                <div className="text-xl text-white/80 mb-3">{card.detail}</div>
+                <div className="text-lg sm:text-xl text-white/80 mb-3">{card.detail}</div>
               )}
 
               {/* Subtitle */}
-              <div className="text-base text-white/70 leading-snug">
+              <div className="text-sm sm:text-base text-white/70 leading-snug px-2">
                 {card.subtitle}
               </div>
             </div>
@@ -144,16 +144,16 @@ export default function ProblemSection() {
         </div>
 
         {/* Kicker Line - Pulsing Red */}
-        <div className="mb-12">
-          <p className="text-3xl sm:text-4xl md:text-5xl font-bold font-syne animate-pulseRed leading-tight">
+        <div className="mb-8 sm:mb-12 px-2">
+          <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-syne animate-pulseRed leading-tight max-w-3xl mx-auto">
             You're not bad at merch.<br />
             The game was rigged.
           </p>
         </div>
 
         {/* Subtle CTA */}
-        <div className="text-base sm:text-lg text-white/70">
-          <p className="flex items-center justify-center gap-2">
+        <div className="text-sm sm:text-base md:text-lg text-white/70 px-2">
+          <p className="flex items-center justify-center gap-2 flex-wrap">
             Keep scrolling to see how we burned the old playbook
             <svg
               className="w-5 h-5 animate-bounce"

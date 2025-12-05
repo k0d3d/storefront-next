@@ -59,7 +59,7 @@ export default function HeroMerch() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0F0F0F]">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0F0F0F] px-4 sm:px-6 lg:px-8 pt-24">
       {/* Radial gradient background */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -73,7 +73,7 @@ export default function HeroMerch() {
         {[...Array(8)].map((_, i) => (
           <div
             key={i}
-            className={`absolute text-[#FFD23F] text-2xl font-bold opacity-30 animate-float`}
+            className={`absolute text-[#FFD23F] text-2xl font-bold opacity-30 animate-float hidden sm:block`}
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -87,7 +87,7 @@ export default function HeroMerch() {
       </div>
 
       {/* Floating Product Images */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none hidden md:block">
         {/* Hoodie - Left */}
         <div className={`absolute left-[8%] top-[18%] w-56 h-56 transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
           <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border-2 border-[#FF4E8C]/30 hover:scale-105 transition-transform">
@@ -138,9 +138,9 @@ export default function HeroMerch() {
       </div>
 
       {/* Content Container */}
-      <div className="container mx-auto px-4 relative z-10 text-center pt-20 pb-16">
+      <div className="max-w-md sm:max-w-2xl lg:max-w-4xl mx-auto relative z-10 text-center py-12">
         {/* Main Headline */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[110px] font-bold font-syne text-white mb-6 leading-tight">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-syne text-white mb-6 leading-none max-w-sm sm:max-w-none mx-auto">
           Launch merch that<br />
           <span
             className="inline-block text-[#FF4E8C] italic"
@@ -153,12 +153,12 @@ export default function HeroMerch() {
           </span>
         </h1>
 
-        <p className="text-3xl sm:text-4xl md:text-5xl font-bold font-syne text-white mb-8">
+        <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-syne text-white mb-6">
           Zero risk. All profit.
         </p>
 
         {/* Subheadline */}
-        <p className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-4xl mx-auto mb-12 leading-relaxed">
+        <p className="text-lg sm:text-xl text-white/90 max-w-sm sm:max-w-2xl lg:max-w-4xl mx-auto mb-8 leading-relaxed px-2">
           Turn your ideas into real drops in 60 seconds. AI designs, community votes, global shipping.{' '}
           <a
             href="https://tohju.com/x402"
@@ -171,54 +171,54 @@ export default function HeroMerch() {
           —your merch earns trust forever.
         </p>
 
-        {/* Live Stats Row - HUGE Numbers */}
-        <div className="flex flex-wrap justify-center gap-6 mb-12">
+        {/* Live Stats Row */}
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-8 max-w-sm sm:max-w-none mx-auto">
           {/* Pieces Sold - Yellow Glow */}
           <div
-            className="relative bg-[#1A1A1A] backdrop-blur-sm border-2 border-[#FFD23F]/50 rounded-2xl px-8 py-6 shadow-2xl hover:scale-105 transition-transform"
+            className="relative bg-[#1A1A1A] backdrop-blur-sm border-2 border-[#FFD23F]/50 rounded-2xl px-6 py-4 shadow-2xl hover:scale-105 transition-transform w-full sm:w-auto"
             style={{
               boxShadow: '0 0 40px rgba(255, 210, 63, 0.3)'
             }}
           >
-            <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#FFD23F] font-syne">
+            <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#FFD23F] font-syne">
               {stats.piecesSold.toLocaleString()}
             </div>
-            <div className="text-sm text-white/70 mt-1">pieces sold this week</div>
+            <div className="text-xs sm:text-sm text-white/70 mt-1">pieces sold this week</div>
           </div>
 
           {/* Creator Earnings - Pink Glow */}
           <div
-            className="relative bg-[#1A1A1A] backdrop-blur-sm border-2 border-[#FF4E8C]/50 rounded-2xl px-8 py-6 shadow-2xl hover:scale-105 transition-transform"
+            className="relative bg-[#1A1A1A] backdrop-blur-sm border-2 border-[#FF4E8C]/50 rounded-2xl px-6 py-4 shadow-2xl hover:scale-105 transition-transform w-full sm:w-auto"
             style={{
               boxShadow: '0 0 40px rgba(255, 78, 140, 0.3)'
             }}
           >
-            <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#FF4E8C] font-syne">
+            <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#FF4E8C] font-syne">
               ${(stats.earnings / 1000).toFixed(0)}k
             </div>
-            <div className="text-sm text-white/70 mt-1">creator earnings</div>
+            <div className="text-xs sm:text-sm text-white/70 mt-1">creator earnings</div>
           </div>
 
           {/* Active Drops - Orange Glow */}
           <div
-            className="relative bg-[#1A1A1A] backdrop-blur-sm border-2 border-[#FF6B35]/50 rounded-2xl px-8 py-6 shadow-2xl hover:scale-105 transition-transform"
+            className="relative bg-[#1A1A1A] backdrop-blur-sm border-2 border-[#FF6B35]/50 rounded-2xl px-6 py-4 shadow-2xl hover:scale-105 transition-transform w-full sm:w-auto"
             style={{
               boxShadow: '0 0 40px rgba(255, 107, 53, 0.3)'
             }}
           >
-            <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#FF6B35] font-syne">
+            <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#FF6B35] font-syne">
               {stats.activeDrops.toLocaleString()}
             </div>
-            <div className="text-sm text-white/70 mt-1">active drops</div>
+            <div className="text-xs sm:text-sm text-white/70 mt-1">active drops</div>
           </div>
         </div>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-col gap-4 items-center max-w-xs sm:max-w-md mx-auto">
           {/* Primary CTA - Pink to Orange Gradient */}
           <Link
             href="#signup"
-            className="group relative inline-flex items-center justify-center px-10 sm:px-14 py-6 text-xl sm:text-2xl font-bold text-white rounded-full shadow-2xl hover:scale-105 transition-all duration-300 overflow-hidden"
+            className="group relative inline-flex items-center justify-center w-full py-5 text-lg sm:text-xl font-bold text-white rounded-full shadow-2xl hover:scale-105 transition-all duration-300 overflow-hidden"
             style={{
               background: 'linear-gradient(135deg, #FF4E8C 0%, #FF6B35 100%)',
               boxShadow: '0 10px 40px rgba(255, 78, 140, 0.4)'
@@ -226,7 +226,7 @@ export default function HeroMerch() {
           >
             <span className="relative z-10">Launch Your Drop Free</span>
             <svg
-              className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform relative z-10"
+              className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -245,11 +245,11 @@ export default function HeroMerch() {
           {/* Secondary CTA - Transparent with Pink Border */}
           <Link
             href="#live-drops"
-            className="group inline-flex items-center justify-center px-10 sm:px-14 py-6 text-xl sm:text-2xl font-bold text-white bg-transparent rounded-full border-2 border-[#FF4E8C]/70 hover:bg-[#FF4E8C] hover:border-[#FF4E8C] transition-all duration-300"
+            className="group inline-flex items-center justify-center w-full py-4 text-lg sm:text-xl font-bold text-white bg-transparent rounded-full border-2 border-[#FF4E8C]/70 hover:bg-[#FF4E8C] hover:border-[#FF4E8C] transition-all duration-300"
           >
             See Live Drops
             <svg
-              className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform"
+              className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -261,7 +261,7 @@ export default function HeroMerch() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce hidden sm:block">
         <svg className="w-6 h-6 text-[#FF4E8C]/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
         </svg>

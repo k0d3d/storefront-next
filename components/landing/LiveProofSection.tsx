@@ -210,9 +210,9 @@ export default function LiveProofSection() {
   }, [carouselPosition]);
 
   return (
-    <section className="relative bg-black overflow-hidden py-20">
+    <section className="relative bg-black overflow-hidden py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8">
       {/* Floating $ coins background */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden hidden sm:block">
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
@@ -230,10 +230,10 @@ export default function LiveProofSection() {
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 container mx-auto px-4">
+      <div className="relative z-10 container mx-auto">
         {/* Headline */}
         <h2
-          className="text-7xl sm:text-8xl md:text-9xl lg:text-[120px] font-extrabold text-[#FFD23F] text-center mb-16 leading-tight"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-[#FFD23F] text-center mb-8 sm:mb-12 md:mb-16 leading-tight max-w-6xl mx-auto"
           style={{
             textShadow: '0 0 60px rgba(255, 210, 63, 0.8), 0 0 100px rgba(255, 210, 63, 0.5)'
           }}
@@ -242,97 +242,99 @@ export default function LiveProofSection() {
         </h2>
 
         {/* Live Earnings Leaderboard */}
-        <div className="mb-12">
-          <h3 className="text-4xl sm:text-5xl font-bold text-[#FF4E8C] text-center mb-8">
+        <div className="mb-8 sm:mb-12">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#FF4E8C] text-center mb-6 sm:mb-8">
             Top Creators This Week
           </h3>
 
-          <div
-            className="w-full max-w-5xl mx-auto rounded-3xl p-8 backdrop-blur-xl"
-            style={{
-              background: 'rgba(255, 255, 255, 0.03)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
-              minHeight: '60vh'
-            }}
-          >
-            {/* Leaderboard Header */}
-            <div className="grid grid-cols-12 gap-4 mb-6 pb-4 border-b border-white/10 text-white/60 text-sm font-semibold">
-              <div className="col-span-1 text-center">Rank</div>
-              <div className="col-span-5">Creator</div>
-              <div className="col-span-3 text-right">Total Earned</div>
-              <div className="col-span-3 text-right">This Week</div>
-            </div>
+          <div className="overflow-x-auto">
+            <div
+              className="w-full max-w-5xl mx-auto rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 backdrop-blur-xl"
+              style={{
+                background: 'rgba(255, 255, 255, 0.03)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
+                minHeight: 'auto'
+              }}
+            >
+              {/* Leaderboard Header - Hide "Total Earned" column on mobile */}
+              <div className="grid grid-cols-10 sm:grid-cols-12 gap-2 sm:gap-4 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-white/10 text-white/60 text-xs sm:text-sm font-semibold">
+                <div className="col-span-1 text-center">Rank</div>
+                <div className="col-span-6 sm:col-span-5">Creator</div>
+                <div className="hidden sm:block sm:col-span-3 text-right">Total Earned</div>
+                <div className="col-span-3 text-right">This Week</div>
+              </div>
 
-            {/* Leaderboard Rows */}
-            <div className="space-y-3">
-              {leaderboard.map((creator) => (
-                <div
-                  key={creator.rank}
-                  className={`grid grid-cols-12 gap-4 items-center py-4 px-4 rounded-xl transition-all hover:scale-[1.02] ${
-                    creator.rank <= 3 ? 'bg-white/5' : 'bg-transparent'
-                  }`}
-                  style={{
-                    border: creator.rank <= 3 ? `1px solid ${creator.color}40` : 'none'
-                  }}
-                >
-                  {/* Rank */}
-                  <div className="col-span-1 text-center">
-                    {creator.rank <= 3 ? (
-                      <div className="text-3xl">{creator.rank === 1 ? '👑' : creator.rank === 2 ? '🥈' : '🥉'}</div>
-                    ) : (
-                      <div className="text-2xl font-bold text-white/40">#{creator.rank}</div>
-                    )}
-                  </div>
-
-                  {/* Avatar + Handle */}
-                  <div className="col-span-5 flex items-center gap-3">
-                    <div
-                      className="w-12 h-12 rounded-full flex items-center justify-center text-2xl"
-                      style={{ background: `${creator.color}20`, border: `2px solid ${creator.color}` }}
-                    >
-                      {creator.avatar}
+              {/* Leaderboard Rows */}
+              <div className="space-y-2 sm:space-y-3">
+                {leaderboard.map((creator) => (
+                  <div
+                    key={creator.rank}
+                    className={`grid grid-cols-10 sm:grid-cols-12 gap-2 sm:gap-4 items-center py-3 sm:py-4 px-2 sm:px-4 rounded-lg sm:rounded-xl transition-all hover:scale-[1.02] ${
+                      creator.rank <= 3 ? 'bg-white/5' : 'bg-transparent'
+                    }`}
+                    style={{
+                      border: creator.rank <= 3 ? `1px solid ${creator.color}40` : 'none'
+                    }}
+                  >
+                    {/* Rank */}
+                    <div className="col-span-1 text-center">
+                      {creator.rank <= 3 ? (
+                        <div className="text-xl sm:text-2xl md:text-3xl">{creator.rank === 1 ? '👑' : creator.rank === 2 ? '🥈' : '🥉'}</div>
+                      ) : (
+                        <div className="text-lg sm:text-xl md:text-2xl font-bold text-white/40">#{creator.rank}</div>
+                      )}
                     </div>
-                    <span
-                      className={`text-lg font-semibold ${
-                        creator.rank <= 3 ? 'text-white text-xl' : 'text-white/80'
-                      }`}
-                    >
-                      {creator.handle}
-                    </span>
-                  </div>
 
-                  {/* Total Earned */}
-                  <div className="col-span-3 text-right">
-                    <div
-                      className={`font-bold ${
-                        creator.rank <= 3 ? 'text-2xl text-[#FFD23F]' : 'text-xl text-white'
-                      }`}
-                      style={{
-                        textShadow: creator.rank <= 3 ? '0 0 20px rgba(255, 210, 63, 0.5)' : 'none'
-                      }}
-                    >
-                      ${creator.totalEarned.toLocaleString()}
+                    {/* Avatar + Handle */}
+                    <div className="col-span-6 sm:col-span-5 flex items-center gap-2 sm:gap-3">
+                      <div
+                        className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-base sm:text-lg md:text-2xl flex-shrink-0"
+                        style={{ background: `${creator.color}20`, border: `2px solid ${creator.color}` }}
+                      >
+                        {creator.avatar}
+                      </div>
+                      <span
+                        className={`text-sm sm:text-base md:text-lg font-semibold truncate ${
+                          creator.rank <= 3 ? 'text-white md:text-xl' : 'text-white/80'
+                        }`}
+                      >
+                        {creator.handle}
+                      </span>
+                    </div>
+
+                    {/* Total Earned - Hidden on mobile */}
+                    <div className="hidden sm:block sm:col-span-3 text-right">
+                      <div
+                        className={`font-bold ${
+                          creator.rank <= 3 ? 'text-xl md:text-2xl text-[#FFD23F]' : 'text-lg md:text-xl text-white'
+                        }`}
+                        style={{
+                          textShadow: creator.rank <= 3 ? '0 0 20px rgba(255, 210, 63, 0.5)' : 'none'
+                        }}
+                      >
+                        ${creator.totalEarned.toLocaleString()}
+                      </div>
+                    </div>
+
+                    {/* This Week */}
+                    <div className="col-span-3 text-right">
+                      <div className={`font-semibold text-sm sm:text-base md:text-lg ${creator.rank <= 3 ? 'sm:text-lg' : ''}`} style={{ color: creator.color }}>
+                        +${creator.thisWeek.toLocaleString()}
+                      </div>
                     </div>
                   </div>
-
-                  {/* This Week */}
-                  <div className="col-span-3 text-right">
-                    <div className={`font-semibold ${creator.rank <= 3 ? 'text-lg' : 'text-base'}`} style={{ color: creator.color }}>
-                      +${creator.thisWeek.toLocaleString()}
-                    </div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
         {/* Live Drops Carousel */}
-        <div className="mb-16">
+        <div className="mb-10 sm:mb-12 md:mb-16">
           <div
             ref={carouselRef}
-            className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide scroll-smooth"
+            className="flex gap-4 sm:gap-6 overflow-x-auto pb-4 scrollbar-hide scroll-smooth"
             style={{
               scrollbarWidth: 'none',
               msOverflowStyle: 'none'
@@ -341,7 +343,7 @@ export default function LiveProofSection() {
             {soldOutDrops.map((drop, index) => (
               <div
                 key={index}
-                className="min-w-[300px] rounded-2xl overflow-hidden relative group"
+                className="min-w-[260px] sm:min-w-[280px] md:min-w-[300px] rounded-xl sm:rounded-2xl overflow-hidden relative group flex-shrink-0"
                 style={{
                   background: 'rgba(255, 255, 255, 0.05)',
                   backdropFilter: 'blur(10px)',
@@ -349,7 +351,7 @@ export default function LiveProofSection() {
                 }}
               >
                 {/* Product Image */}
-                <div className="relative h-[300px]">
+                <div className="relative h-[260px] sm:h-[280px] md:h-[300px]">
                   <Image
                     src={drop.image}
                     alt={drop.name}
@@ -357,26 +359,26 @@ export default function LiveProofSection() {
                     className="object-cover"
                   />
                   {/* SOLD OUT Badge */}
-                  <div className="absolute top-4 right-4 bg-[#DC2626] text-white px-4 py-2 rounded-full text-sm font-bold">
+                  <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-[#DC2626] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-bold">
                     SOLD OUT
                   </div>
                   {/* Sold Out Time */}
-                  <div className="absolute bottom-4 left-4 right-4 bg-black/80 backdrop-blur-sm rounded-xl p-3">
-                    <p className="text-[#FFD23F] text-sm font-semibold">Sold out in {drop.soldOutIn} minutes</p>
+                  <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 bg-black/80 backdrop-blur-sm rounded-lg sm:rounded-xl p-2 sm:p-3">
+                    <p className="text-[#FFD23F] text-xs sm:text-sm font-semibold">Sold out in {drop.soldOutIn} minutes</p>
                   </div>
                 </div>
 
                 {/* Drop Info */}
-                <div className="p-4">
-                  <h4 className="text-xl font-bold text-white mb-2">{drop.name}</h4>
+                <div className="p-3 sm:p-4">
+                  <h4 className="text-lg sm:text-xl font-bold text-white mb-2">{drop.name}</h4>
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-white/60 text-sm">Price</p>
-                      <p className="text-[#FFD23F] text-2xl font-bold">${drop.price}</p>
+                      <p className="text-white/60 text-xs sm:text-sm">Price</p>
+                      <p className="text-[#FFD23F] text-xl sm:text-2xl font-bold">${drop.price}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-white/60 text-sm">Earned</p>
-                      <p className="text-[#FF4E8C] text-2xl font-bold">${drop.earnings.toLocaleString()}</p>
+                      <p className="text-white/60 text-xs sm:text-sm">Earned</p>
+                      <p className="text-[#FF4E8C] text-xl sm:text-2xl font-bold">${drop.earnings.toLocaleString()}</p>
                     </div>
                   </div>
                   <p className="text-white/40 text-xs mt-2">{drop.quantity} units</p>
@@ -387,16 +389,16 @@ export default function LiveProofSection() {
         </div>
 
         {/* Killer Stat */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 sm:mb-10 md:mb-12 px-2">
           <div
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-white mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-3 sm:mb-4 leading-tight max-w-4xl mx-auto"
             style={{
               textShadow: '0 0 40px rgba(255, 210, 63, 0.6)'
             }}
           >
             $2.4M paid out to creators
           </div>
-          <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white/80">
+          <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white/80">
             Zero inventory left behind.
           </div>
         </div>
@@ -405,15 +407,15 @@ export default function LiveProofSection() {
         <div className="text-center">
           <Link
             href="#signup"
-            className="inline-flex items-center justify-center px-16 py-8 text-2xl font-extrabold text-white rounded-full hover:scale-105 transition-all duration-300 animate-pulse-scale"
+            className="inline-flex items-center justify-center w-full max-w-md mx-auto px-8 sm:px-12 md:px-16 py-5 sm:py-6 md:py-8 text-lg sm:text-xl md:text-2xl font-extrabold text-white rounded-full hover:scale-105 transition-all duration-300 animate-pulse-scale"
             style={{
               background: 'linear-gradient(135deg, #FF4E8C 0%, #FF6B35 50%, #FFD23F 100%)',
               boxShadow: '0 20px 60px rgba(255, 210, 63, 0.5)'
             }}
           >
-            Launch Your Drop Free
+            <span>Launch Your Drop Free</span>
             <svg
-              className="ml-3 w-8 h-8 group-hover:translate-x-2 transition-transform"
+              className="ml-2 sm:ml-3 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 group-hover:translate-x-2 transition-transform flex-shrink-0"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

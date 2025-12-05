@@ -55,19 +55,19 @@ export default function HowItWorksSection() {
   ];
 
   return (
-    <section className="relative bg-white overflow-hidden py-20">
+    <section className="relative bg-white overflow-hidden py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8">
       {/* Timer Badge - Top Right */}
-      <div className="absolute top-8 right-8 z-20 bg-black text-white px-6 py-3 rounded-full text-sm font-bold border-2 border-[#FFD23F]">
-        <span className="text-[#FFD23F]">⏱️ Average launch time:</span> 00:{timer < 10 ? `0${timer}` : timer}
+      <div className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 z-20 bg-black text-white px-3 py-2 sm:px-4 sm:py-2.5 md:px-6 md:py-3 rounded-full text-xs sm:text-sm font-bold border-2 border-[#FFD23F]">
+        <span className="text-[#FFD23F]">⏱️</span> <span className="hidden sm:inline">Average launch time:</span> <span className="sm:hidden">Time:</span> 00:{timer < 10 ? `0${timer}` : timer}
       </div>
 
       {/* Header Section */}
-      <div className="container mx-auto px-4 text-center mb-16">
-        <h2 className="text-7xl sm:text-8xl md:text-9xl font-extrabold text-black mb-6 leading-tight">
+      <div className="container mx-auto text-center mb-10 sm:mb-12 md:mb-16">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-black mb-4 sm:mb-6 leading-tight max-w-6xl mx-auto">
           Launch a drop in 60 seconds.<br />
           Seriously.
         </h2>
-        <p className="text-2xl sm:text-3xl text-gray-600">
+        <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-600">
           No inventory. No waiting. No upfront cost.
         </p>
       </div>
@@ -80,22 +80,21 @@ export default function HowItWorksSection() {
             className="w-full relative overflow-hidden"
             style={{
               background: step.backgroundColor,
-              minHeight: '650px'
+              minHeight: 'auto'
             }}
           >
-            <div className="container mx-auto px-4 h-full">
-              <div className="grid grid-cols-1 md:grid-cols-12 items-center gap-8 h-full py-12">
+            <div className="container mx-auto h-full">
+              <div className="grid grid-cols-1 md:grid-cols-12 items-center gap-4 sm:gap-6 md:gap-8 h-full py-10 sm:py-12">
                 {/* Giant Number - Left Side */}
-                <div className="md:col-span-3 flex items-center justify-center">
+                <div className="md:col-span-3 flex items-center justify-center order-1">
                   <div
-                    className="font-extrabold"
+                    className="font-extrabold text-6xl sm:text-7xl md:text-8xl lg:text-9xl"
                     style={{
-                      fontSize: '300px',
                       lineHeight: '1',
                       color: step.textColor === 'white' ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)',
                       textShadow: step.textColor === 'white'
-                        ? '0 0 80px rgba(255, 255, 255, 0.3)'
-                        : '0 0 80px rgba(0, 0, 0, 0.2)',
+                        ? '0 0 40px rgba(255, 255, 255, 0.3)'
+                        : '0 0 40px rgba(0, 0, 0, 0.2)',
                       fontFamily: 'system-ui, -apple-system, sans-serif'
                     }}
                   >
@@ -104,8 +103,8 @@ export default function HowItWorksSection() {
                 </div>
 
                 {/* Illustration - Center */}
-                <div className="md:col-span-4 flex items-center justify-center">
-                  <div className="relative w-full h-[400px] md:h-[500px]">
+                <div className="md:col-span-4 flex items-center justify-center order-2">
+                  <div className="relative w-full h-[280px] sm:h-[350px] md:h-[400px] lg:h-[500px]">
                     <Image
                       src={step.image}
                       alt={step.imageAlt}
@@ -119,9 +118,9 @@ export default function HowItWorksSection() {
                 </div>
 
                 {/* Text - Right Side */}
-                <div className="md:col-span-5 flex items-center">
+                <div className="md:col-span-5 flex items-center order-3 text-center md:text-left">
                   <h3
-                    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight"
+                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight"
                     style={{
                       color: step.textColor,
                       textShadow: step.textColor === 'white'
@@ -139,26 +138,26 @@ export default function HowItWorksSection() {
       </div>
 
       {/* Bottom Closer Section */}
-      <div className="container mx-auto px-4 text-center py-20">
-        <p className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-black mb-4">
+      <div className="container mx-auto text-center py-12 sm:py-16 md:py-20">
+        <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-black mb-3 sm:mb-4">
           That's it.
         </p>
-        <p className="text-3xl sm:text-4xl text-gray-700 mb-12">
+        <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-700 mb-8 sm:mb-10 md:mb-12 px-2">
           No samples. No minimums. No excuses.
         </p>
 
         {/* CTA Button - Huge Gradient */}
         <Link
           href="#signup"
-          className="inline-flex items-center justify-center px-16 py-8 text-2xl sm:text-3xl font-extrabold text-white rounded-full hover:scale-105 transition-all duration-300"
+          className="inline-flex items-center justify-center w-full max-w-2xl mx-auto px-8 sm:px-12 md:px-16 py-5 sm:py-6 md:py-8 text-lg sm:text-xl md:text-2xl lg:text-3xl font-extrabold text-white rounded-full hover:scale-105 transition-all duration-300"
           style={{
             background: 'linear-gradient(135deg, #FF4E8C 0%, #FF6B35 50%, #FFD23F 100%)',
             boxShadow: '0 20px 60px rgba(255, 78, 140, 0.4)'
           }}
         >
-          Launch Your Drop in 60 Seconds
+          <span className="text-center">Launch Your Drop in 60 Seconds</span>
           <svg
-            className="ml-4 w-9 h-9 group-hover:translate-x-2 transition-transform"
+            className="ml-2 sm:ml-3 md:ml-4 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 group-hover:translate-x-2 transition-transform flex-shrink-0"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
