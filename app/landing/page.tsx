@@ -6,9 +6,6 @@ import {
   LiveProofSection,
   HowItWorksSection,
   FinalCTASection,
-  Services,
-  Team,
-  Testimonials,
   Footer
 } from '@/components/landing';
 
@@ -29,15 +26,6 @@ export default function LandingPage() {
         <HowItWorksSection />
 
         <FinalCTASection />
-
-        <Services />
-
-        {/* Horizontal Line */}
-        <div className="horizontal-line bg-[#e6e6e6]" />
-
-        <Team />
-
-        <Testimonials />
       </main>
 
       <Footer
