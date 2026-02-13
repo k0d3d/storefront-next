@@ -1,0 +1,80 @@
+@import "./styles/variables.css";
+@import "tailwindcss";
+
+
+
+@theme inline {
+  /* Brand Colors - MerchPaddie Identity */
+  --color-indigo-600: #6366F1;
+  --color-emerald-500: #10B981;
+  --color-amber-500: #F59E0B;
+  
+  /* UX Guide - Warm/Human Tones */
+  --color-warm-white: #FDFAF7; /* Creamy off-white */
+  --color-warm-gray-900: #1A1614; /* Deep warm charcoal */
+  --color-warm-gray-500: #78716C; /* Warm stone gray */
+  
+  /* Mapped Aliases */
+  --color-primary: var(--color-indigo-600);
+  --color-secondary: var(--color-emerald-500);
+  --color-accent: var(--color-amber-500);
+  
+  --color-background: var(--color-warm-white);
+  --color-foreground: var(--color-warm-gray-900);
+  --color-muted: var(--color-warm-gray-500);
+
+  /* Gradients */
+  --image-gradient-hero: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+  --image-gradient-money: linear-gradient(90deg, #10B981 0%, #059669 100%);
+
+  /* Typography */
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
+  
+  /* Text Sizes (Scale) */
+  --text-7xl: 4.5rem;
+  --text-8xl: 6rem;
+}
+
+/* Custom Utilities */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  /* Section Spacing - Full Viewport Rhythm */
+  .section-screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+/* Global Styles */
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  line-height: 1.6;
+}
+
+/* Animations */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll {
+  animation: scroll 40s linear infinite;
+}
+
+.pause-hover:hover {
+  animation-play-state: paused;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}

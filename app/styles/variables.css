@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
+
+@font-face {
+  font-family: 'Speeday';
+  src: url('./fonts/Speeday-Regular-FFP.ttf') format('truetype');
+}
+.logo-font {
+  font-family: 'Speeday', sans-serif;
+  font-kerning: auto;
+  letter-spacing: 5px;
+}
+
+/* Font */
+:root {
+  --font-instrument: 'Instrument Sans', sans-serif;
+  --font-exo: "Exo 2", sans-serif;
+}
+
+.font-instrument {
+  font-family: var(--font-instrument);
+}
+
+.font-exo {
+  font-family: var(--font-exo);
+}
