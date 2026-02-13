@@ -4,7 +4,6 @@ export { default as Hero } from './Hero';
 export { default as HeroMerch } from './HeroMerch';
 export { default as OnboardingSection } from './OnboardingSection';
 export { default as BranchingSection } from './BranchingSection';
-export { default as TourSection } from './TourSection';
 export { default as PersonalizedValueSection } from './PersonalizedValueSection';
 export { default as ProblemSection } from './ProblemSection';
 export { default as SolutionSection } from './SolutionSection';

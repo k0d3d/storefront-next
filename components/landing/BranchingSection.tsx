@@ -5,21 +5,11 @@ import { ArrowRight, Store, Megaphone } from 'lucide-react'
 
 export default function BranchingSection() {
   const handleChoice = (choice: 'Vendor' | 'Creator') => {
-    localStorage.setItem('userJourney', choice)
-    window.dispatchEvent(new Event('onboarding-update'))
+    const role = choice === 'Vendor' ? 'ADVERTISER' : 'CREATOR'
+    const appUrl = `https://app.merchpaddie.store/dashboard?tour=true&role=${role}`
     
-    // Scroll to tour section first if it exists (since it will now be visible)
-    setTimeout(() => {
-      const tourSection = document.getElementById('tour-section')
-      if (tourSection) {
-        tourSection.scrollIntoView({ behavior: 'smooth' })
-      } else {
-        const nextSection = document.getElementById('personalized-value-section')
-        if (nextSection) {
-          nextSection.scrollIntoView({ behavior: 'smooth' })
-        }
-      }
-    }, 100) // Small delay to allow TourSection to render
+    // Perform direct navigation
+    window.location.href = appUrl
   }
 
   const handleSkip = () => {

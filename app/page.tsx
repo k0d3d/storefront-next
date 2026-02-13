@@ -4,7 +4,6 @@ import {
   HeroMerch,
   OnboardingSection,
   BranchingSection,
-  TourSection,
   PersonalizedValueSection,
   ProblemSection,
   SolutionSection,
@@ -29,8 +28,6 @@ export default function HomePage() {
         <OnboardingSection />
         
         <BranchingSection />
-
-        <TourSection />
 
         <PersonalizedValueSection />
 
