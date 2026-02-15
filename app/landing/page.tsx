@@ -1,11 +1,10 @@
 import {
   HeaderMinimal,
-  HeroMerch,
-  ProblemSection,
-  SolutionSection,
-  LiveProofSection,
+  HeroSection,
   HowItWorksSection,
-  FinalCTASection,
+  OnboardingSection,
+  PathSelectionSection,
+  LiveActivitySection,
   FooterMinimal
 } from '@/components/landing';
 
@@ -15,17 +14,15 @@ export default function LandingPage() {
       <HeaderMinimal logo="MerchPaddie" />
 
       <main>
-        <HeroMerch />
-
-        <ProblemSection />
-
-        <SolutionSection />
-
-        <LiveProofSection />
-
+        <HeroSection />
+        
         <HowItWorksSection />
 
-        <FinalCTASection />
+        <OnboardingSection />
+        
+        <PathSelectionSection />
+
+        <LiveActivitySection />
       </main>
 
       <FooterMinimal

@@ -2,14 +2,9 @@ import { Metadata } from 'next';
 import {
   HeaderMinimal,
   HeroSection,
-  OnboardingSection,
-  BranchingSection,
-  PersonalizedValueSection,
-  ProblemSection,
-  SolutionSection,
-  LiveProofSection,
   HowItWorksSection,
-  FinalCTASection,
+  PathSelectionSection,
+  LiveActivitySection,
   FooterMinimal
 } from '@/components/landing';
 
@@ -27,12 +22,10 @@ export default function HomePage() {
         <HeroSection />
         
         <HowItWorksSection />
-
-        <OnboardingSection />
         
-        <BranchingSection />
+        <PathSelectionSection />
 
-        <FinalCTASection />
+        <LiveActivitySection />
       </main>
 
       <FooterMinimal
