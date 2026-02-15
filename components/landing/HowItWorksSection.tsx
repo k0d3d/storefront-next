@@ -1,176 +1,255 @@
-'use client';
+"use client"
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import { motion } from 'framer-motion'
+import { Megaphone, Users, Coins, ShieldCheck, Zap, ChevronDown } from 'lucide-react'
 
-export default function HowItWorksSection() {
-  const [timer, setTimer] = useState(58);
-
-  // Ticking timer animation
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimer((prev) => {
-        if (prev >= 62) return 56;
-        return prev + 1;
-      });
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const steps = [
-    {
-      number: '1',
-      text: 'Pick your vibe or let AI design it',
-      backgroundColor: '#FF4E8C',
-      textColor: 'white',
-      image: '/images/steps/step1-ai-painting.png',
-      imageAlt: 'AI robot painting on hoodie'
-    },
-    {
-      number: '2',
-      text: 'Drop it. Your community votes & pre-orders',
-      backgroundColor: '#FF6B35',
-      textColor: 'white',
-      image: '/images/steps/step2-voting-poll.png',
-      imageAlt: 'Phone voting poll'
-    },
-    {
-      number: '3',
-      text: 'It sells out → we print & ship globally',
-      backgroundColor: '#FFD23F',
-      textColor: 'black',
-      image: '/images/steps/step3-conveyor-belt.png',
-      imageAlt: 'Conveyor belt with hoodies'
-    },
-    {
-      number: '4',
-      text: 'You keep 100%. Money hits your wallet',
-      backgroundColor: '#0F0F0F',
-      textColor: 'white',
-      image: '/images/steps/step4-money-wallet.png',
-      imageAlt: 'Money rain into wallet'
-    }
-  ];
+const StepCard = ({ step, title, description, icon: Icon, color, delay, side }: any) => {
+  const isLeft = side === 'left'
+  const isRight = side === 'right'
 
   return (
-    <section className="relative bg-white overflow-hidden py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8">
-      {/* Timer Badge - Top Right */}
-      <div className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 z-20 bg-black text-white px-3 py-2 sm:px-4 sm:py-2.5 md:px-6 md:py-3 rounded-full text-xs sm:text-sm font-bold border-2 border-[#FFD23F]">
-        <span className="text-[#FFD23F]">⏱️</span> <span className="hidden sm:inline">Average launch time:</span> <span className="sm:hidden">Time:</span> 00:{timer < 10 ? `0${timer}` : timer}
-      </div>
+    <motion.div
+      initial={{ 
+        opacity: 0, 
+        x: isLeft ? -60 : isRight ? 60 : 0,
+        y: !isLeft && !isRight ? 60 : 0 
+      }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay }}
+      className="relative group w-full lg:w-[360px] h-[400px] rounded-[24px] border backdrop-blur-[12px] p-8 flex flex-col items-center text-center transition-all duration-400 cubic-bezier(0.4, 0, 0.2, 1) hover:-translate-y-2"
+      style={{
+        backgroundColor: `${color}14`, // 0.08 opacity
+        borderColor: `${color}4D`, // 0.3 opacity
+      }}
+    >
+      {/* Icon Container */}
+      <motion.div
+        animate={{ scale: [1, 1.05, 1] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: delay }}
+        className="w-20 h-20 rounded-full flex items-center justify-center mb-6 shadow-lg"
+        style={{
+          background: `linear-gradient(135deg, ${color}, ${color}CC)`,
+          boxShadow: `0 8px 24px ${color}66`
+        }}
+      >
+        <Icon size={36} className="text-white" />
+      </motion.div>
 
-      {/* Header Section */}
-      <div className="container mx-auto text-center mb-10 sm:mb-12 md:mb-16">
-        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-black mb-4 sm:mb-6 leading-tight max-w-6xl mx-auto">
-          Launch a drop in 60 seconds.<br />
-          Seriously.
-        </h2>
-        <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-600">
-          No inventory. No waiting. No upfront cost.
-        </p>
-      </div>
+      <span className="text-[11px] font-semibold tracking-[0.12em] uppercase mb-3" style={{ color }}>
+        STEP {step}
+      </span>
 
-      {/* 4-Step Flow - Full Width Panels */}
-      <div className="w-full">
-        {steps.map((step, index) => (
-          <div
-            key={index}
-            className="w-full relative overflow-hidden"
-            style={{
-              background: step.backgroundColor,
-              minHeight: 'auto'
-            }}
+      <h3 className="text-2xl font-bold text-white mb-4 leading-tight">
+        {title}
+      </h3>
+
+      <p className="text-[#CBD5E0] text-base leading-relaxed px-4">
+        {description}
+      </p>
+
+      {/* Hover State Glow */}
+      <div 
+        className="absolute inset-0 rounded-[24px] opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
+        style={{
+          boxShadow: `0 12px 40px ${color}40`,
+          borderColor: `${color}99` // 0.6 opacity
+        }}
+      />
+    </motion.div>
+  )
+}
+
+const ConnectorArrow = ({ color1, color2, delay }: { color1: string, color2: string, delay: number }) => {
+  return (
+    <div className="hidden lg:flex items-center justify-center w-20 h-full relative -mx-2 z-0">
+      <svg width="80" height="24" viewBox="0 0 80 24" fill="none" className="w-full">
+        <defs>
+          <linearGradient id={`grad-${color1}`} x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor={color1} />
+            <stop offset="100%" stopColor={color2} />
+          </linearGradient>
+        </defs>
+        <motion.path
+          d="M0 12H78M78 12L70 4M78 12L70 20"
+          stroke={`url(#grad-${color1})`}
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          whileInView={{ pathLength: 1, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5, delay, ease: "easeInOut" }}
+        />
+        <motion.path
+          d="M0 12H78"
+          stroke={`url(#grad-${color1})`}
+          strokeWidth="2"
+          strokeDasharray="10 10"
+          animate={{ strokeDashoffset: [-20, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+        />
+      </svg>
+    </div>
+  )
+}
+
+const MobileConnector = ({ color1, color2, delay }: { color1: string, color2: string, delay: number }) => {
+  return (
+    <div className="lg:hidden flex justify-center py-4">
+      <svg width="24" height="60" viewBox="0 0 24 60" fill="none">
+        <motion.path
+          d="M12 0V58M12 58L4 50M12 58L20 50"
+          stroke={color1}
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          whileInView={{ pathLength: 1, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay }}
+        />
+      </svg>
+    </div>
+  )
+}
+
+const FeatureBox = ({ icon: Icon, title, text, color, delay }: any) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay }}
+      className="flex-1 min-h-[160px] bg-white/[0.04] border border-white/[0.08] rounded-2xl p-8 hover:bg-white/[0.08] transition-colors"
+    >
+      <Icon size={28} className="mb-4" style={{ color }} />
+      <h4 className="text-lg font-semibold text-white mb-2">{title}</h4>
+      <p className="text-[#A0AEC0] text-sm">{text}</p>
+    </motion.div>
+  )
+}
+
+export default function HowItWorksSection() {
+  return (
+    <section id="how-it-works" className="relative min-h-screen w-full bg-gradient-to-b from-[#1a1f3a] to-[#0f1419] py-20 lg:py-32 px-6 sm:px-8 lg:px-20 overflow-hidden">
+      <div className="max-w-[1400px] mx-auto flex flex-col items-center">
+        
+        {/* Section Header */}
+        <div className="text-center mb-20 max-w-3xl">
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-[12px] font-semibold text-[#6B46FF] uppercase tracking-[0.15em] mb-4"
           >
-            <div className="container mx-auto h-full">
-              <div className="grid grid-cols-1 md:grid-cols-12 items-center gap-4 sm:gap-6 md:gap-8 h-full py-10 sm:py-12">
-                {/* Giant Number - Left Side */}
-                <div className="md:col-span-3 flex items-center justify-center order-1">
-                  <div
-                    className="font-extrabold text-6xl sm:text-7xl md:text-8xl lg:text-9xl"
-                    style={{
-                      lineHeight: '1',
-                      color: step.textColor === 'white' ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)',
-                      textShadow: step.textColor === 'white'
-                        ? '0 0 40px rgba(255, 255, 255, 0.3)'
-                        : '0 0 40px rgba(0, 0, 0, 0.2)',
-                      fontFamily: 'system-ui, -apple-system, sans-serif'
-                    }}
-                  >
-                    {step.number}
-                  </div>
-                </div>
-
-                {/* Illustration - Center */}
-                <div className="md:col-span-4 flex items-center justify-center order-2">
-                  <div className="relative w-full h-[280px] sm:h-[350px] md:h-[400px] lg:h-[500px]">
-                    <Image
-                      src={step.image}
-                      alt={step.imageAlt}
-                      fill
-                      className="object-contain drop-shadow-2xl"
-                      style={{
-                        filter: 'drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3))'
-                      }}
-                    />
-                  </div>
-                </div>
-
-                {/* Text - Right Side */}
-                <div className="md:col-span-5 flex items-center order-3 text-center md:text-left">
-                  <h3
-                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight"
-                    style={{
-                      color: step.textColor,
-                      textShadow: step.textColor === 'white'
-                        ? '0 4px 20px rgba(0, 0, 0, 0.3)'
-                        : 'none'
-                    }}
-                  >
-                    {step.text}
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Bottom Closer Section */}
-      <div className="container mx-auto text-center py-12 sm:py-16 md:py-20">
-        <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-black mb-3 sm:mb-4">
-          That's it.
-        </p>
-        <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-700 mb-8 sm:mb-10 md:mb-12 px-2">
-          No samples. No minimums. No excuses.
-        </p>
-
-        {/* CTA Button - Huge Gradient */}
-        <Link
-          href="#signup"
-          className="inline-flex items-center justify-center w-full max-w-2xl mx-auto px-8 sm:px-12 md:px-16 py-5 sm:py-6 md:py-8 text-lg sm:text-xl md:text-2xl lg:text-3xl font-extrabold text-white rounded-full hover:scale-105 transition-all duration-300"
-          style={{
-            background: 'linear-gradient(135deg, #FF4E8C 0%, #FF6B35 50%, #FFD23F 100%)',
-            boxShadow: '0 20px 60px rgba(255, 78, 140, 0.4)'
-          }}
-        >
-          <span className="text-center">Launch Your Drop in 60 Seconds</span>
-          <svg
-            className="ml-2 sm:ml-3 md:ml-4 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 group-hover:translate-x-2 transition-transform flex-shrink-0"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+            HOW IT WORKS
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-[32px] sm:text-[42px] lg:text-[56px] font-bold text-white mb-6 leading-[1.1]"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M13 7l5 5m0 0l-5 5m5-5H6"
-            />
-          </svg>
-        </Link>
+            Connect. Promote. Earn.
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-[18px] lg:text-[20px] text-[#A0AEC0] leading-relaxed"
+          >
+            We match advertisers with creators who have real audiences. Everyone wins.
+          </motion.p>
+        </div>
+
+        {/* Flow Diagram */}
+        <div className="flex flex-col lg:flex-row items-center justify-center w-full mb-32">
+          <StepCard 
+            step="1"
+            title="Advertisers Create"
+            description="Upload campaign creative, set budget, choose between native card ads or full-screen formats. We approve and make it live."
+            icon={Megaphone}
+            color="#6B46FF"
+            delay={0.6}
+            side="left"
+          />
+          
+          <ConnectorArrow color1="#6B46FF" color2="#00D9FF" delay={1.4} />
+          <MobileConnector color1="#6B46FF" color2="#00D9FF" delay={0.8} />
+
+          <StepCard 
+            step="2"
+            title="Creators Promote"
+            description="Browse available campaigns. Pick what fits your audience. Post using ready-made content or create your own."
+            icon={Users}
+            color="#00D9FF"
+            delay={0.9}
+          />
+
+          <ConnectorArrow color1="#00D9FF" color2="#00FF88" delay={1.7} />
+          <MobileConnector color1="#00D9FF" color2="#00FF88" delay={1.1} />
+
+          <StepCard 
+            step="3"
+            title="Track & Get Paid"
+            description="Real-time tracking shows impressions and clicks. Creators earn per interaction. Payouts on demand."
+            icon={Coins}
+            color="#00FF88"
+            delay={1.2}
+            side="right"
+          />
+        </div>
+
+        {/* Key Differentiators */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full mb-20">
+          <FeatureBox 
+            icon={ShieldCheck}
+            title="No Bot Inflation"
+            text="Track real impressions from real people"
+            color="#6B46FF"
+            delay={1.5}
+          />
+          <FeatureBox 
+            icon={Zap}
+            title="No Crazy Thresholds"
+            text="Start earning from day one, no minimum followers"
+            color="#00D9FF"
+            delay={1.6}
+          />
+          <FeatureBox 
+            icon={Coins}
+            title="Fair Payouts"
+            text="Transparent pricing, paid on demand"
+            color="#00FF88"
+            delay={1.7}
+          />
+        </div>
+
+        {/* CTA Transition */}
+        <div className="flex flex-col items-center">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 2.0 }}
+            className="text-[18px] font-semibold text-[#A0AEC0] mb-4"
+          >
+            Which side are you on?
+          </motion.p>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="text-[#6B46FF]"
+          >
+            <ChevronDown size={24} />
+          </motion.div>
+        </div>
+
       </div>
     </section>
-  );
+  )
 }

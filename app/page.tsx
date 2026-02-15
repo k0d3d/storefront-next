@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import {
   HeaderMinimal,
-  HeroMerch,
+  HeroSection,
   OnboardingSection,
   BranchingSection,
   PersonalizedValueSection,
@@ -24,20 +24,13 @@ export default function HomePage() {
       <HeaderMinimal logo="MerchPaddie" />
 
       <main>
-        <HeroMerch />
+        <HeroSection />
+        
+        <HowItWorksSection />
+
         <OnboardingSection />
         
         <BranchingSection />
-
-        <PersonalizedValueSection />
-
-        {/* <ProblemSection /> */}
-
-        {/* <SolutionSection /> */}
-
-        <LiveProofSection />
-
-        {/* <HowItWorksSection /> */}
 
         <FinalCTASection />
       </main>

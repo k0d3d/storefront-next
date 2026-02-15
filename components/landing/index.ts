@@ -2,6 +2,7 @@ export { default as Header } from './Header';
 export { default as HeaderMinimal } from './HeaderMinimal';
 export { default as Hero } from './Hero';
 export { default as HeroMerch } from './HeroMerch';
+export { default as HeroSection } from './HeroSection';
 export { default as OnboardingSection } from './OnboardingSection';
 export { default as BranchingSection } from './BranchingSection';
 export { default as PersonalizedValueSection } from './PersonalizedValueSection';
