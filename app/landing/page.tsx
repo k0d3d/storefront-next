@@ -5,7 +5,7 @@ import {
   OnboardingSection,
   PathSelectionSection,
   LiveActivitySection,
-  FooterMinimal
+  FooterSection
 } from '@/components/landing';
 
 export default function LandingPage() {
@@ -25,10 +25,7 @@ export default function LandingPage() {
         <LiveActivitySection />
       </main>
 
-      <FooterMinimal
-        companyName="MerchPaddie"
-        email="hello@merchpaddie.com"
-      />
+      <FooterSection />
     </div>
   );
 }

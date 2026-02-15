@@ -14,5 +14,5 @@ export { default as Services } from './Services';
 export { default as Team } from './Team';
 export { default as Testimonials } from './Testimonials';
 export { default as Footer } from './Footer';
-export { default as FooterMinimal } from './FooterMinimal';
+export { default as FooterSection } from './FooterSection';
 export { default as ComingSoon } from './ComingSoon';

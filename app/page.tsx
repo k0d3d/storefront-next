@@ -5,7 +5,7 @@ import {
   HowItWorksSection,
   PathSelectionSection,
   LiveActivitySection,
-  FooterMinimal
+  FooterSection
 } from '@/components/landing';
 
 export const metadata: Metadata = {
@@ -28,10 +28,7 @@ export default function HomePage() {
         <LiveActivitySection />
       </main>
 
-      <FooterMinimal
-        companyName="MerchPaddie"
-        email="hello@merchpaddie.com"
-      />
+      <FooterSection />
     </div>
   );
 }
